@@ -1,0 +1,161 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"><img src="../../assets/icon/menu.svg" /></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="fw-600 fs-24">Weather Forcast</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="padding-25 div-background">
+    <div class="p-b-18">
+      <ion-searchbar
+        placeholder="Search your City "
+        debounce="1000"
+        (ionChange)="ionChange($event)"
+        search-icon="assets/icon/search-icon.svg"
+      ></ion-searchbar>
+    </div>
+    <div class="listDiv">
+      <ion-list
+        *ngIf="startCitySearch && city && city.length > 0"
+        class="listPopup"
+      >
+        <ion-item *ngFor="let c of city" (click)="citySelectEvent(c)"
+          >{{ c.LocalizedName }}
+        </ion-item>
+      </ion-list>
+    </div>
+    <ion-row class="p-b-18">
+      <ion-card class="ion-no-padding ion-no-margin ion-card-main">
+        <ion-card-content class="ion-no-padding">
+          <ion-row>
+            <ion-col class="fw-600 fs-16 ion-no-padding">
+              <div>
+                <span>Toady</span>
+              </div>
+            </ion-col>
+            <ion-col class="fw-400 fs-12ion-no-padding ion-text-end">
+              <div class="ion-no-padding">
+                <span class="no-wrap">{{date}}</span>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-no-padding ion-text-center">
+              <span class="fw-500 fs-58"
+                >{{cityTemp}}
+                <img class="degree-img" src="../../assets/images/oC.svg"
+              /></span>
+            </ion-col>
+            <ion-col class="ion-text-end ion-no-padding">
+              <img class="icon-size" src="{{src}}" />
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="col-12 ion-text-center ion-no-padding">
+              <ion-chip>
+                <img class="p-r-13" src="/assets/images/location.svg" />
+                <ion-label class="fw-400 fs-12 color-white"
+                  >{{cityName}}, {{countryName}}</ion-label
+                >
+              </ion-chip>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+    <ion-row class="p-b-18">
+      <ion-col>
+        <ion-card class="ion-no-padding ion-no-margin ion-card-second">
+          <ion-card-content class="ion-no-padding">
+            <ion-row>
+              <ion-col class="ion-text-center ion-no-padding self-center">
+                <img src="../../assets/images/humidity.svg" />
+              </ion-col>
+              <ion-col>
+                <div class="fw-700 fs-17">
+                  <span class="color-white">{{cloudCover}}%</span>
+                </div>
+                <div>
+                  <span class="fw-400 fs-12 color-white">Humidity</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="ion-no-padding ion-no-margin ion-card-second">
+          <ion-card-content class="ion-no-padding">
+            <ion-row>
+              <ion-col class="ion-text-center ion-no-padding self-center">
+                <img src="../../assets/images/pressure.svg" />
+              </ion-col>
+              <ion-col>
+                <div class="fw-700 fs-17">
+                  <span class="color-white">{{windDirection}}Hpa</span>
+                </div>
+                <div>
+                  <span class="fw-400 fs-12 color-white">Presure</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-card class="ion-no-padding ion-no-margin card-future">
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <div class="fw-400 fs-24 ion-text-center">
+                  <span class="color-white">{{futureDay1}}°{{unit}}</span>
+                </div>
+                <div class="ion-text-center">
+                  <span class="fw-500 fs-14 color-white">{{futureDate1}}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="ion-no-padding ion-no-margin card-future">
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <div class="fw-400 fs-24 ion-text-center">
+                  <span class="color-white">{{futureDay2}}°{{unit}}</span>
+                </div>
+                <div class="ion-text-center">
+                  <span class="fw-500 fs-14 color-white">{{futureDate2}}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="ion-no-padding ion-no-margin card-future">
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <div class="fw-400 fs-24 ion-text-center">
+                  <span class="color-white">{{futureDay3}}°{{unit}}</span>
+                </div>
+                <div class="ion-text-center">
+                  <span class="fw-500 fs-14 color-white">{{futureDate3}}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
